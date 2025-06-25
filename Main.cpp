@@ -1,7 +1,31 @@
 #include "DxLib.h"
-int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+#include <Windows.h>
+#include <sal.h>
+#include <vector>
+
+struct Bullet
+{
+	int x, y;
+	bool isActive;
+};
+
+const int SCREEN_WIDTH = 800;
+const int SCREEN_HEIGHT = 600; //使わないとエラーになる？？ それにしてSyntaxって・・・
+const int PLAYER_WIDTH = 40;
+const int PLAYER_HEIGHT = 20;
+const int BULLET_SPEED = 10;
+const int PLAYER_SPEED = 5;
+
+int WINAPI WinMain(
+	_In_ HINSTANCE hInstance,
+	_In_opt_ HINSTANCE hPrevInstance,
+	_In_ LPSTR lpCmdLine,
+	_In_ int nCmdShow)
+{
+
 	//ウインドウモードを有効
 	ChangeWindowMode(TRUE);
+	SetGraphMode(SCREEN_WIDTH, SCREEN_HEIGHT, 32);
 
 	//DXライブラリの初期化
 	if (DxLib_Init() < 0) {
